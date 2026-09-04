@@ -25,6 +25,91 @@ RecoverAI combines:
 - Real-time agent activity
 - Recovery analytics
 
+
+## 🏗️ System Architecture
+
+```text
+                         ┌──────────────────────┐
+                         │      CUSTOMER        │
+                         │   Failed Payment     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    EVENT SYSTEM      │
+                         │   Payment Failed     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │  IDEMPOTENCY LAYER   │
+                         │ Duplicate Protection │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                    ┌──────────────────────────────┐
+                    │   RECOVERAI ORCHESTRATOR     │
+                    └──────────────┬───────────────┘
+                                   │
+             ┌─────────────────────┼─────────────────────┐
+             ▼                     ▼                     ▼
+      ┌──────────────┐     ┌──────────────┐      ┌──────────────┐
+      │   Customer   │     │   Failure    │      │   ML Model   │
+      │    Agent     │     │    Agent     │      │   Recovery   │
+      │              │     │              │      │    Score     │
+      └──────┬───────┘     └──────┬───────┘      └──────┬───────┘
+             │                    │                     │
+             └────────────────────┼─────────────────────┘
+                                  ▼
+                       ┌──────────────────────┐
+                       │ Strategy Learning    │
+                       │ Historical Outcomes  │
+                       └──────────┬───────────┘
+                                  │
+                                  ▼
+                       ┌──────────────────────┐
+                       │    LLM STRATEGY      │
+                       │ Decision / Reasoning │
+                       └──────────┬───────────┘
+                                  │
+                                  ▼
+                       ┌──────────────────────┐
+                       │     RISK ENGINE      │
+                       │    Risk Score 0–100  │
+                       └──────────┬───────────┘
+                                  │
+                                  ▼
+                       ┌──────────────────────┐
+                       │    POLICY ENGINE     │
+                       │  Deterministic Rules │
+                       └──────────┬───────────┘
+                                  │
+                           ┌──────┴──────┐
+                           ▼             ▼
+                         SAFE          RISKY
+                           │             │
+                           ▼             ▼
+                    ┌────────────┐  ┌──────────────┐
+                    │   Action   │  │ Human Review │
+                    │   Agent    │  │    Queue     │
+                    └─────┬──────┘  └──────┬───────┘
+                          │                 │
+                          └────────┬────────┘
+                                   ▼
+                         ┌──────────────────────┐
+                         │       OUTCOME        │
+                         │ Recovered / Failed   │
+                         └──────────┬───────────┘
+                                    │
+                       ┌────────────┼────────────┐
+                       ▼            ▼            ▼
+                 Agent Memory   Audit Logs   Analytics
+                       │
+                       └────────────┐
+                                    ▼
+                           Future Decisions
+
+                           
 ## 🧠 Agentic Workflow
 
 Payment Failure
