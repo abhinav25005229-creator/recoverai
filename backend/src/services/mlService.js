@@ -3,7 +3,7 @@ const axios = require("axios");
 async function getRecoveryProbability(payment) {
 
     const response = await axios.post(
-        `${process.env.ML_SERVICE_URL}/predict`,
+      `${process.env.ML_SERVICE_URL}/predict`,
         {
             amount: Number(payment.amount),
 
