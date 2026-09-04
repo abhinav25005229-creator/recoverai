@@ -144,7 +144,17 @@ async function runRecovery(
 
     }
 
-
+// Mark recovered transaction as SUCCESS
+if (recoveryResult.status === "RECOVERED") {
+    await pool.query(
+        `
+        UPDATE transactions
+        SET status = 'SUCCESS'
+        WHERE transaction_id = $1
+        `,
+        [transaction.transaction_id]
+    );
+}
     return recoveryResult;
 
 }

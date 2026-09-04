@@ -161,7 +161,7 @@ router.post(
 
             // Random payment amount
            // High-value payment for Human Review testing
-const amount = 150000;
+const amount = 5000;
 
             // Unique transaction ID
             const transactionId =
