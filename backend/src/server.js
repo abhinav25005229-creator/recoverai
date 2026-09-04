@@ -31,15 +31,16 @@ const humanReviewRoutes =
 const httpServer =
     http.createServer(app);
 
+const allowedOrigin =
+    process.env.FRONTEND_URL ||
+    "http://localhost:5173";
+
 const io = new Server(
     httpServer,
     {
         cors: {
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:5174"
-    ]
-}
+            origin: allowedOrigin
+        }
     }
 );
 
@@ -62,7 +63,10 @@ io.on("connection", (socket) => {
 });
 
 initializeSocket(io);
-app.use(cors());
+
+app.use(cors({
+    origin: allowedOrigin
+}));
 app.get("/", (req, res) => {
 
     res.json({
