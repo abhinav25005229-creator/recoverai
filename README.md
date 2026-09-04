@@ -28,7 +28,7 @@ RecoverAI combines:
 
 ## 🏗️ System Architecture
 
-```text
+
                          ┌──────────────────────┐
                          │      CUSTOMER        │
                          │   Failed Payment     │
@@ -109,31 +109,31 @@ RecoverAI combines:
                                     ▼
                            Future Decisions
 
-                           
+
 ## 🧠 Agentic Workflow
 
-Payment Failure
-↓
-Customer Analysis
-↓
-Failure Analysis
-↓
-Recovery Prediction
-↓
-Strategy Learning
-↓
-LLM Decision
-↓
-Risk Engine
-↓
-Policy Engine
-↓
-Action / Human Review
-↓
-Outcome
-↓
-Memory + Analytics
-↓
+Payment Failure  
+↓  
+Customer Analysis  
+↓  
+Failure Analysis  
+↓  
+Recovery Prediction  
+↓  
+Strategy Learning  
+↓  
+LLM Decision  
+↓  
+Risk Engine  
+↓  
+Policy Engine  
+↓  
+Action / Human Review  
+↓  
+Outcome  
+↓  
+Memory + Analytics  
+↓  
 Future Decisions
 
 ## 🛡️ Safety
@@ -181,21 +181,9 @@ High-risk decisions are escalated to human review.
 
 Analyzes failed payments and recommends context-aware recovery strategies.
 
-### Adaptive Strategy Learning
-
-Uses historical recovery outcomes to identify strategies that perform better for different failure scenarios.
-
-### Agent Memory
-
-Stores previous decisions and outcomes so future recovery decisions can account for past attempts.
-
 ### Risk Management
 
 Calculates transaction risk and applies deterministic policy controls before automated action.
-
-### Human Review
-
-High-risk decisions can be routed to a human approval queue.
 
 ### Real-Time Observability
 
