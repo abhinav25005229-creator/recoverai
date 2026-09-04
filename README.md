@@ -4,6 +4,22 @@
 
 RecoverAI is an AI-native revenue recovery system designed to intelligently recover failed payments while maintaining deterministic financial safety controls.
 
+## 🌐 Live Demo
+
+**Frontend:**  
+https://recoverai-frontend-plum.vercel.app/
+
+**Backend API:**  
+https://recoverai-zw2l.onrender.com/
+
+**ML Service:**  
+https://recoverai-ml.onrender.com/
+
+## 📦 GitHub Repository
+
+https://github.com/abhinav25005229-creator/recoverai
+
+
 ## 🚀 Problem
 
 Failed payments are often recoverable, but traditional retry systems use static rules and don't adapt to customer behavior, failure reasons, historical outcomes, or transaction risk.
