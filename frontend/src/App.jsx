@@ -21,7 +21,7 @@ import {
     AlertTriangle,
 } from "lucide-react";
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 function formatCurrency(value) {
     return new Intl.NumberFormat("en-IN", {
         style: "currency",
@@ -115,16 +115,15 @@ const updateHumanReview = async (
 
     try {
 
-        const response =
-            await axios.post(
-                `http://localhost:5000/api/reviews/${reviewId}/resolve`,
-                {
-                    action,
-                    note:
-                        `Review ${action.toLowerCase()} from dashboard`
-                }
-            );
-
+    const response =
+    await axios.post(
+        `${API_URL}/api/reviews/${reviewId}/resolve`,
+        {
+            action,
+            note:
+                `Review ${action.toLowerCase()} from dashboard`
+        }
+    );
 
         if (response.data.success) {
 
@@ -168,9 +167,9 @@ const updateHumanReview = async (
 
 useEffect(() => {
 
-    fetch(
-        "http://localhost:5000/api/human-reviews"
-    )
+   fetch(
+    `${API_URL}/api/human-reviews`
+)
         .then(response =>
             response.json()
         )
@@ -197,8 +196,10 @@ useEffect(() => {
 }, []);
 useEffect(() => {
 
-    const socket =
-        io("http://localhost:5000");
+    const API_URL = import.meta.env.VITE_API_URL;
+
+const socket =
+    io(API_URL);
 
     socket.on(
         "connect",
@@ -279,13 +280,13 @@ socket.on(
                 statsResponse,
                 decisionsResponse,
             ] = await Promise.all([
-                axios.get(
-                    "http://localhost:5000/api/dashboard/stats"
-                ),
+               axios.get(
+    `${API_URL}/api/dashboard/stats`
+),
 
-                axios.get(
-                    "http://localhost:5000/api/dashboard/decisions"
-                ),
+               axios.get(
+    `${API_URL}/api/dashboard/decisions`
+),
             ]);
 
 
@@ -321,7 +322,7 @@ socket.on(
     try {
       const strategyResponse =
     await axios.get(
-        "http://localhost:5000/api/strategies/performance"
+       `${API_URL}/api/strategies/performance`
     );
 
 setStrategyPerformance(
@@ -334,21 +335,20 @@ setStrategyPerformance(
             daily
         ] = await Promise.all([
 
-            axios.get(
-                "http://localhost:5000/api/analytics/revenue"
-            ),
+   axios.get(
+    `${API_URL}/api/analytics/revenue`
+),
+          axios.get(
+    `${API_URL}/api/analytics/failures`
+),
 
-            axios.get(
-                "http://localhost:5000/api/analytics/failures"
-            ),
+           axios.get(
+    `${API_URL}/api/analytics/strategies`
+),
 
-            axios.get(
-                "http://localhost:5000/api/analytics/strategies"
-            ),
-
-            axios.get(
-                "http://localhost:5000/api/analytics/daily"
-            )
+         axios.get(
+    `${API_URL}/api/analytics/daily`
+)
 
         ]);
 
@@ -392,7 +392,7 @@ async function runRecoveryExperiment() {
 
         const response =
             await axios.get(
-                "http://localhost:5000/api/experiment/run?count=1000"
+              `${API_URL}/api/experiment/run?count=1000`
             );
 
 
@@ -427,7 +427,7 @@ async function runRecoveryExperiment() {
 
         const response =
             await axios.post(
-                "http://localhost:5000/api/payments/simulate"
+               `${API_URL}/api/payments/simulate`
             );
 
 
@@ -450,7 +450,7 @@ async function runRecoveryExperiment() {
 await loadDashboard();
 
 const reviewsResponse = await axios.get(
-    "http://localhost:5000/api/human-reviews"
+    `${API_URL}/api/human-reviews`
 );
 
 if (reviewsResponse.data.success) {
@@ -503,7 +503,7 @@ async function openTransaction(transactionId) {
 
         const response =
             await axios.get(
-                `http://localhost:5000/api/transactions/${transactionId}`
+                `${API_URL}/api/transactions/${transactionId}`
             );
 
         setTransactionDetails(
